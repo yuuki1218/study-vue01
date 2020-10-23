@@ -17,7 +17,8 @@
               type="radio"
               name="question1"
               id="gendar"
-              value="はい"
+              value='はい'
+              v-model="question1"
               @click="showQuestion"
             />はい
             <input
@@ -26,6 +27,7 @@
               name="question1"
               id="gendar"
               value="いいえ"
+              v-model="question1"
               @click="showQuestion"
             />いいえ
           </div>
@@ -40,6 +42,7 @@
               name="question2"
               id="gendar"
               value="はい"
+              v-model="question2"
               @click="showQuestion2"
             />はい
             <input
@@ -48,6 +51,7 @@
               name="question2"
               id="gendar"
               value="いいえ"
+              v-model="question2"
               @click="showQuestion2"
             />いいえ
           </div>
@@ -62,6 +66,7 @@
               name="question3"
               id="gendar"
               value="はい"
+              v-model="question3"
             />はい
             <input
               class="form-control"
@@ -69,6 +74,7 @@
               name="question3"
               id="gendar"
               value="いいえ"
+              v-model="question3"
             />いいえ
           </div>
         </div>
@@ -104,6 +110,32 @@ export default {
     showQuestion2() {
       this.inviewQuestion2 = true;
     },
+  },
+  computed: {
+    question1: {
+      get(){
+        return this.$store.getters.question1;
+      },
+      set(value){
+        this.$store.dispatch('choiceQuestion1', value);
+      }
+    },
+    question2: {
+      get(){
+        return this.$store.getters.question2;
+      },
+      set(value){
+        this.$store.dispatch('choiceQuestion2', value);
+      }
+    },
+    question3: {
+      get(){
+        return this.$store.getters.question3;
+      },
+      set(value){
+        this.$store.dispatch('choiceQuestion3', value);
+      }
+    }
   },
 };
 </script>

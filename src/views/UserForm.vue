@@ -10,25 +10,33 @@
         </div>
         <div class="form-body">
           <div class="form-group">
-            <label for="gender" class="form-item">-性別-</label>
+            <label class="form-item">-性別-</label>
             <input
               class="form-control"
               type="radio"
-              name="gendar"
-              id="gendar"
+              id="man"
               value="男性"
-            />男性
+              v-model="gender"
+            /><label for="man">男性</label>
             <input
               class="form-control"
               type="radio"
-              name="gendar"
-              id="gendar"
+              id="lady"
               value="女性"
-            />女性
+              v-model="gender"
+            /><label for="lady">女性</label>
+          </div>
+          <div>
           </div>
           <div class="form-group">
-            <label for="age" class="form-item">-生年月日-</label>
-            <input class="form-control" type="date" name="age" id="age" />
+            <label for="birthday" class="form-item">-生年月日-</label>
+            <input
+              class="form-control"
+              type="date"
+              name="birthday"
+              id="birthday"
+              v-model="birthday"
+            />
           </div>
         </div>
       </div>
@@ -45,7 +53,24 @@
 
 <script>
 export default {
-  name: 'UserForm',
+  computed: {
+    gender: {
+      get(){
+        return this.$store.getters.gender;
+      },
+      set(value){
+        this.$store.dispatch('choiceGender', value);
+      }
+    },
+    birthday: {
+      get(){
+        return this.$store.getters.birthday;
+      },
+      set(value){
+        this.$store.dispatch('choiceBirthday', value);
+      }
+    }
+  },
 };
 </script>
 

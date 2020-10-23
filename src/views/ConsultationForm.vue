@@ -10,19 +10,22 @@
         </div>
         <div class="form-body">
           <div class="form-group">
-            <label for="consultasion" class="form-item">-ご相談内容-</label>
+            <label for="consultation" class="form-item">-ご相談内容-</label>
             <textarea
-              name="consultasion"
-              id="consultasion"
+              name="consultation"
+              id="consultation"
               rows="20"
+              v-model="consultation"
             ></textarea>
           </div>
         </div>
       </div>
       <div class="form-group">
+        <router-link to="/confirm-form">
         <div class="form-botton">
           <input class="form-control" type="submit" value="次へ進む" />
         </div>
+        </router-link>
         <router-link to="/question-form">
           <div class="return-botton">
             <input class="form-control" type="submit" value="戻る" />
@@ -32,6 +35,21 @@
     </section>
   </div>
 </template>
+
+<script>
+export default {
+  computed: {
+    consultation: {
+      get(){
+        return this.$store.getters.consultation;
+      },
+      set(value){
+        this.$store.dispatch('choiceConsultation', value);
+      }
+    },
+  }
+}
+</script>
 
 <style scoped>
 #user-form {
